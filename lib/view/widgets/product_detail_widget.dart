@@ -33,24 +33,26 @@ class ProductDetailWidget extends StatelessWidget {
               const SizedBox(
                 width: 40,
               ),
-              Obx(() {
-                return InkWell(
-                  onTap: () {
-                    productController.addProductToFavorites(id);
-                  },
-                  child: CircleAvatar(
-                    backgroundColor:
-                        Get.isDarkMode ? Colors.white : Colors.black,
-                    radius: 20,
-                    child: Icon(
-                      productController.toggleFavorites(id)
-                          ? CupertinoIcons.heart_solid
-                          : Icons.favorite_border,
-                      color: Colors.red,
+              Obx(
+                () {
+                  return InkWell(
+                    onTap: () {
+                      productController.addProductToFavorites(id);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor:
+                          Get.isDarkMode ? Colors.white : Colors.black,
+                      radius: 20,
+                      child: Icon(
+                        productController.toggleFavorites(id)
+                            ? CupertinoIcons.heart_solid
+                            : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
                     ),
-                  ),
-                );
-              },),
+                  );
+                },
+              ),
             ],
           ),
         ],
