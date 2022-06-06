@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+    <string name="facebook_app_id">400201345265438</string>
+    <string name="app_name">morgan_shop</string>
+    <string name="fb_login_protocol_scheme">fb400201345265438</string>
+    <string name="facebook_client_token">3986a7faf40f393c8bb84fe745eb76d8</string>
+
+
+</resources>

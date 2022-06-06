@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "937714852801",
+    "project_id": "morgan-shop-89c66",
+    "storage_bucket": "morgan-shop-89c66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937714852801:android:cbbe4164a1de51c8a90540",
+        "android_client_info": {
+          "package_name": "com.example.morgan_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937714852801-gvk4otmuphbhjmppo0tvgihn2ecesjgh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.morgan_shop",
+            "certificate_hash": "c016f7dc67905ea1283c3b7a32aa4cf53c212fa7"
+          }
+        },
+        {
+          "client_id": "937714852801-5mvtpe10tcq4uaa8chps0ucqucujpb26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV_iI38XQDyjDFc2ndwvTfF7El0E43Tbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937714852801-5mvtpe10tcq4uaa8chps0ucqucujpb26.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
