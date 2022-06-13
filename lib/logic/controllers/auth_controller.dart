@@ -15,9 +15,19 @@ class AuthController extends GetxController {
   bool isChecked = false;
   bool isLoading = false;
   bool isLogin = false;
-  var currentUserName = '';
-  var email = '';
-  var userPhoto = '';
+  var currentUserName = ''.obs;
+  var email = ''.obs;
+  var userPhoto = ''.obs;
+
+  User? get userData => _auth.currentUser;
+
+  @override
+  void onInit() {
+    currentUserName.value = (userData != null ? userData!.displayName : "")!;
+    email.value = (userData != null ? userData!.email : "")!;
+    userPhoto.value = (userData != null ? userData!.photoURL : "")!;
+    super.onInit();
+  }
 
   void toggleVisibility() {
     isVisible = !isVisible;
@@ -42,7 +52,7 @@ class AuthController extends GetxController {
         password: password,
       )
           .then((_) {
-        currentUserName = name;
+        currentUserName.value = name;
         _auth.currentUser!.updateDisplayName(name);
         showSnackBarMessage('', 'Registered Successfully');
         isLoading = false;
@@ -76,7 +86,7 @@ class AuthController extends GetxController {
         password: password,
       )
           .then((_) {
-        currentUserName = _auth.currentUser!.displayName!;
+        currentUserName.value = _auth.currentUser!.displayName!;
         showSnackBarMessage('', 'login Successfully');
         isLoading = false;
         Get.offNamed(Routes.mainScreen);
@@ -137,8 +147,9 @@ class AuthController extends GetxController {
       );
       // Once signed in, return the UserCredential
       await _auth.signInWithCredential(credential).then((value) {
-        currentUserName = googleUser.displayName!;
-        userPhoto = googleUser.photoUrl!;
+        currentUserName.value = googleUser.displayName!;
+        userPhoto.value = googleUser.photoUrl!;
+        email.value = googleUser.email;
         showSnackBarMessage('', 'login Successfully');
         Get.offNamed(Routes.mainScreen);
       });
@@ -161,24 +172,24 @@ class AuthController extends GetxController {
       await _auth.signInWithCredential(facebookAuthCredential).then((_) async {
         final userData = await facebookAuth.getUserData();
         FacebookModel facebookModel = FacebookModel.fromJson(userData);
-        currentUserName = facebookModel.name!;
-        userPhoto = facebookModel.facebookPhotoModel!.url!;
-        email = facebookModel.email!;
+        currentUserName.value = facebookModel.name!;
+        userPhoto.value = facebookModel.facebookPhotoModel!.url!;
+        email.value = facebookModel.email!;
 
         showSnackBarMessage('', 'login Successfully');
       });
       update();
       update();
     } catch (error) {
-      showSnackBarMessage('', '$error');
+      showSnackBarMessage('', 'login error, try again');
     }
   }
 
   Future<void> signOut() async {
     try {
       await _auth.signOut().then((_) {
-        currentUserName = '';
-        userPhoto = '';
+        currentUserName.value = '';
+        userPhoto.value = '';
         showSnackBarMessage('', 'logOut Successfully');
         Get.offNamed(Routes.welcomeScreen);
       });
@@ -209,7 +220,7 @@ class AuthController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Get.isDarkMode ? mainColor : pinkClr,
       colorText: Get.isDarkMode ? Colors.black : Colors.white,
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 2),
       padding: const EdgeInsets.only(left: 8, right: 8, top: 10),
     );
   }

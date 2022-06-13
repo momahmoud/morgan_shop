@@ -135,11 +135,13 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
           Positioned(
             top: 5,
             right: 20,
-            child: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? pinkClr : mainColor,
-              radius: 24,
-              child: _shoppingCartBadge(),
-            ),
+            child: Obx(() {
+              return CircleAvatar(
+                backgroundColor: Get.isDarkMode ? pinkClr : mainColor,
+                radius: 24,
+                child: _shoppingCartBadge(),
+              );
+            }),
           ),
         ],
       ),

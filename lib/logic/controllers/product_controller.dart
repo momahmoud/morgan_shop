@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:morgan_shop/model/product_model.dart';
 import 'package:morgan_shop/services/product_service.dart';
 
 class ProductController extends GetxController {
+  TextEditingController searchEditingController = TextEditingController();
   var productList = <ProductModel>[].obs;
+  var searchList = <ProductModel>[].obs;
   var favoriteProductList = <ProductModel>[].obs;
   RxBool isLoading = true.obs;
   RxBool isFavorite = false.obs;
@@ -49,5 +52,22 @@ class ProductController extends GetxController {
 
   bool toggleFavorites(int productId) {
     return favoriteProductList.any((element) => element.id == productId);
+  }
+
+  void searchProduct(String searchName) {
+    searchName = searchName.toLowerCase();
+    searchList.value = productList.where((search) {
+      var searchTitle = search.title.toLowerCase();
+      var searchPrice = search.price.toString().toLowerCase();
+      return searchTitle.contains(searchName) ||
+          searchPrice.contains(searchName);
+    }).toList();
+
+    update();
+  }
+
+  void clearSearch() {
+    searchEditingController.clear();
+    searchProduct('');
   }
 }

@@ -9,6 +9,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final String hint;
   final TextEditingController controller;
   final Function validator;
+  final Function? onChange;
   final bool secureText;
   final Widget? suffixIcon;
   final Icon? prefixIcon;
@@ -24,11 +25,15 @@ class TextFormFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.textInputType,
     this.prefixIcon,
+    this.onChange,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: (value) {
+        onChange!;
+      },
       keyboardType: textInputType,
       obscureText: secureText,
       validator: (String? val) => validator(val),

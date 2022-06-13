@@ -8,7 +8,7 @@ class ProductService {
 
     if (response.statusCode == 200) {
       var jsonData = response.body;
-      print(jsonData);
+
       return productModelFromJson(jsonData);
     } else {
       return throw Exception('error!');

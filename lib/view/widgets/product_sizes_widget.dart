@@ -42,15 +42,16 @@ class _ProductSizesWidgetState extends State<ProductSizesWidget> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   border: currentSelected != index
-                      ? Border.all(color: Colors.grey)
+                      ? Border.all(
+                          color: Get.isDarkMode ? Colors.black : Colors.grey)
                       : Border.all(
                           style: BorderStyle.none,
                         ),
                   color: currentSelected == index
                       ? Get.isDarkMode
-                          ? Colors.black
+                          ? pinkClr
                           : mainColor.withOpacity(.7)
-                      : Colors.transparent,
+                      : Colors.black,
                 ),
                 child: Center(
                   child: TextWidget(

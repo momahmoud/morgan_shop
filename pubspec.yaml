@@ -27,32 +27,28 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  badges: ^2.0.3
+  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.3.12
   firebase_core: ^1.14.0
+  flutter:
+    sdk: flutter
+  flutter_facebook_auth: ^3.5.0
+  flutter_rating_bar: ^4.0.0
+  flutter_rating_stars: ^1.0.3+4
+  geocoding: ^2.0.4
+  geolocator: ^8.2.1
   get: ^4.6.1
   get_storage: ^2.0.3
   google_fonts: ^2.3.1
   google_sign_in: ^5.2.4
   http: ^0.13.4
-  flutter_facebook_auth: "^3.5.0"
-  badges: ^2.0.3
-  carousel_slider: ^4.1.1
-  smooth_page_indicator: ^1.0.0+2
-  # flutter_colorpicker: ^1.0.3
-  flutter_rating_bar: ^4.0.0
-  flutter_rating_stars: ^1.0.3+4
+  pay: ^1.0.10
   readmore: ^2.1.0
-
-  flutter:
-    sdk: flutter
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter

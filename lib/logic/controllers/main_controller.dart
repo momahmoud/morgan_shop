@@ -11,7 +11,7 @@ class MainController {
     HomeScreen(),
     const CategoriesScreen(),
     FavoriteScreen(),
-    const SettingsScreen(),
+    SettingsScreen(),
   ].obs;
   RxList<String> appBarTitle = const <String>[
     "Morgan Shop",

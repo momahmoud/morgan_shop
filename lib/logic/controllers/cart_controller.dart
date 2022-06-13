@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:morgan_shop/routes/routes.dart';
+import 'package:get_storage/get_storage.dart';
+
 import 'package:morgan_shop/view/screens/cart_screen.dart';
 
 import '../../model/product_model.dart';
 import '../../utils/themes.dart';
 
 class CartController extends GetxController {
-  var productMap = {}.obs;
+  RxMap productMap = {}.obs;
+  RxBool isAddingToCart = false.obs;
+  var localStorage = GetStorage();
+
+  @override
+  void onInit() {
+    List? storageProducts = localStorage.read<List<dynamic>>('isAddingToCart');
+    if (storageProducts != null) {
+      productMap = storageProducts
+          .map((e) => ProductModel.fromJson(e))
+          .toList()
+          .obs as RxMap;
+    }
+
+    super.onInit();
+  }
 
   get productSubTotal => productMap.entries
       .map((product) => product.key.price * product.value)
@@ -20,17 +36,20 @@ class CartController extends GetxController {
       .reduce((value, element) => value + element)
       .toStringAsFixed(2);
 
-  void addProductToCart(ProductModel productModel) {
+  void addProductToCart(ProductModel productModel) async {
     if (productMap.containsKey(productModel)) {
       productMap[productModel] += 1;
+      await localStorage.write('isAddingToCart', productMap.values);
     } else {
       productMap[productModel] = 1;
+      await localStorage.write('isAddingToCart', productMap);
     }
   }
 
   void removeProductFromCart(ProductModel productModel) {
     if (productMap.containsKey(productModel) && productMap[productModel] == 1) {
       productMap.removeWhere((key, value) => key == productModel);
+      localStorage.remove('isAddingToCart');
     } else {
       productMap[productModel] -= 1;
     }
@@ -38,6 +57,7 @@ class CartController extends GetxController {
 
   void clearOneProductFromCart(ProductModel productModel) {
     productMap.removeWhere((key, value) => key == productModel);
+    localStorage.remove('isAddingToCart');
   }
 
   void clearAllProductsFromCart() {
@@ -51,6 +71,7 @@ class CartController extends GetxController {
       barrierDismissible: true,
       onConfirm: () {
         productMap.clear();
+        localStorage.remove('isAddingToCart');
         Get.back();
       },
       onCancel: () => Get.to(CartScreen()),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:morgan_shop/view/screens/main_screen.dart';
+import 'package:morgan_shop/view/screens/payment_screen.dart';
 
 import '../../logic/controllers/cart_controller.dart';
 import '../../logic/controllers/product_controller.dart';
@@ -257,30 +258,35 @@ class CartScreen extends StatelessWidget {
                   width: 30,
                 ),
                 Expanded(
-                  child: Container(
-                    height: 60,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Get.isDarkMode ? pinkClr : mainColor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const TextWidget(
-                          text: 'Check Out',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 25,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Icon(
-                          Icons.shopping_cart,
-                          color: Get.isDarkMode ? Colors.white : Colors.white,
-                          size: 35,
-                        )
-                      ],
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(() => PaymentScreen());
+                    },
+                    child: Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Get.isDarkMode ? pinkClr : mainColor,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const TextWidget(
+                            text: 'Check Out',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 25,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.shopping_cart,
+                            color: Get.isDarkMode ? Colors.white : Colors.white,
+                            size: 35,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )

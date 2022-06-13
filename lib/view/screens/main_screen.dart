@@ -23,36 +23,10 @@ class MainScreen extends StatelessWidget {
       () => Scaffold(
         backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
+          leading: Container(),
           elevation: 0,
           actions: [
-            if (mainController.currentIndex.value == 0) _shoppingCartBadge(),
-            if (mainController.currentIndex.value == 3)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Get.defaultDialog(
-                      middleText: 'Are you sure?',
-                      title: 'Log Out',
-                      buttonColor: Get.isDarkMode ? pinkClr : mainColor,
-                      textCancel: 'No',
-                      textConfirm: 'Ok',
-                      cancelTextColor:
-                          Get.isDarkMode ? Colors.white : mainColor,
-                      barrierDismissible: true,
-                      onConfirm: () => authController.signOut(),
-                      onCancel: () => Get.back(),
-                    );
-                  },
-                  child: TextWidget(
-                    textAlign: TextAlign.center,
-                    text: "LogOut",
-                    fontWeight: FontWeight.bold,
-                    color: Get.isDarkMode ? pinkClr : Colors.black,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
+            if (mainController.currentIndex.value != 3) _shoppingCartBadge(),
           ],
           title: TextWidget(
             text: mainController.appBarTitle[mainController.currentIndex.value],

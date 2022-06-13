@@ -50,11 +50,11 @@ class ProductModel {
       };
 }
 
-enum Category { MEN_S_CLOTHING, JEWELERY, ELECTRONICS, WOMEN_S_CLOTHING }
+enum Category { MEN_S_CLOTHING, JEWELERS, ELECTRONICS, WOMEN_S_CLOTHING }
 
 final categoryValues = EnumValues({
   "electronics": Category.ELECTRONICS,
-  "jewelery": Category.JEWELERY,
+  "jewelers": Category.JEWELERS,
   "men's clothing": Category.MEN_S_CLOTHING,
   "women's clothing": Category.WOMEN_S_CLOTHING
 });
